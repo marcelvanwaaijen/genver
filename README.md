@@ -9,15 +9,29 @@ This utility can be used to automatically generate a `version.go` file with the 
 ## Usage
 The Makefile in this repo shows an example of its usage. Just run `genver` before you build your project.
 
+or you can use `go:generate`:
+```go
+package main
+
+import "fmt"
+
+//go:generate genver.exe
+
+func main() {
+	fmt.Println(version)
+}
+
+```
+
 ### Extra options:
+```sh
+$ genver -h
 
-    $ genver -h
-
-    Usage of genver:
-      -o string
-            output file name (default "version.go")
-      -p string
-            package name (default "main")
-      -version
-            show version
-
+Usage of genver:
+  -o string
+        output file name (default "version.go")
+  -p string
+        package name (default "main")
+  -version
+        show version
+```
