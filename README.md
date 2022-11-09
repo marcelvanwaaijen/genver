@@ -1,7 +1,7 @@
 # Description
 
 This utility can be used to automatically generate a `version.go` file with the current git tag version. To get the current version, it executes the following command:
-`git describe --tags --abbrev=0`. This will then be merged in `version.go`.
+`git describe --tags`. This will then use the full string for `gitcommit` and the string up to the first "-" as the `version`, which will then be merged in `version.go`.
 
 ## Install
 `go install github.com/marcelvanwaaijen/genver@latest`
@@ -19,6 +19,7 @@ import "fmt"
 
 func main() {
 	fmt.Println(version)
+      fmt.Println(gitcommit)
 }
 
 ```
