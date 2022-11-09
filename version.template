@@ -2,4 +2,7 @@
 // Created: {{ .TS }}
 package {{ .Package }}
 
-const version string = "{{ .Version }}"
+const (
+    version string = "{{ .Version }}"
+    gitcommit string = "{{ .Commit }}"
+)

@@ -30,6 +30,7 @@ type verinfo struct {
 	TS      string
 	Package string
 	Version string
+	Commit  string
 }
 
 func init() {
@@ -45,7 +46,7 @@ func init() {
 
 func main() {
 	var sb strings.Builder
-	cmd := exec.Command("git", "describe", "--tags", "--abbrev=0")
+	cmd := exec.Command("git", "describe", "--tags")
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = &sb
 	if err := cmd.Run(); err != nil {
@@ -55,7 +56,8 @@ func main() {
 	vi := verinfo{
 		TS:      time.Now().Format("2006-01-02 15:04:05 MST"),
 		Package: pckg,
-		Version: strings.TrimSuffix(sb.String(), "\n"),
+		Version: strings.Split(sb.String(), "-")[0],
+		Commit:  strings.TrimSuffix(sb.String(), "\n"),
 	}
 
 	t, err := template.New("version").Parse(tmplt)
