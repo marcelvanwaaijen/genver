@@ -56,7 +56,7 @@ func main() {
 	vi := verinfo{
 		TS:      time.Now().Format("2006-01-02 15:04:05 MST"),
 		Package: pckg,
-		Version: strings.Split(sb.String(), "-")[0],
+		Version: strings.TrimSuffix(strings.Split(sb.String(), "-")[0], "\n"),
 		Commit:  strings.TrimSuffix(sb.String(), "\n"),
 	}
 
