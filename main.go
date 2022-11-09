@@ -53,11 +53,12 @@ func main() {
 		log.Fatalf("error: %v", err)
 	}
 
+	v, c := splitver(strings.TrimSuffix(sb.String(), "\n"))
 	vi := verinfo{
 		TS:      time.Now().Format("2006-01-02 15:04:05 MST"),
 		Package: pckg,
-		Version: strings.TrimSuffix(strings.Split(sb.String(), "-")[0], "\n"),
-		Commit:  strings.TrimSuffix(sb.String(), "\n"),
+		Version: v,
+		Commit:  c,
 	}
 
 	t, err := template.New("version").Parse(tmplt)
@@ -73,4 +74,14 @@ func main() {
 	if err := t.Execute(f, vi); err != nil {
 		log.Fatalf("error writing version info: %v", err)
 	}
+}
+
+func splitver(v string) (string, string) {
+	parts := strings.Split(v, "-")
+	if len(parts) > 2 {
+		nv := strings.Join(parts[0:len(parts)-2], "-")
+		c := v
+		return nv, c
+	}
+	return v, v
 }
