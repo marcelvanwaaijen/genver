@@ -8,16 +8,16 @@ import (
 )
 
 const (
-    version string = "v1.0.2"
-    gitcommit string = "v1.0.2"
+	version   string = "v1.0.3"
+	gitcommit string = "v1.0.3"
 )
 
 func ShowVersionOnly() {
-    fmt.Fprintf(os.Stdout, "version: %s\n", version)
-    os.Exit(0)
+	fmt.Fprintf(os.Stdout, "version: %s\n", version)
+	os.Exit(0)
 }
 
 func ShowVersion() {
-    fmt.Fprintf(os.Stdout, "version: %s (%s)\n", version, gitcommit)
-    os.Exit(0)
+	fmt.Fprintf(os.Stdout, "version: %s (%s)\n", version, gitcommit)
+	os.Exit(0)
 }
