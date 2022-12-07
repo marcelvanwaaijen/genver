@@ -2,7 +2,22 @@
 // Created: {{ .TS }}
 package {{ .Package }}
 
+import (
+	"fmt"
+	"os"
+)
+
 const (
     version string = "{{ .Version }}"
     gitcommit string = "{{ .Commit }}"
 )
+
+func ShowVersionOnly() {
+    fmt.Fprintf(os.Stdout, "version: %s\n", version)
+    os.Exit(0)
+}
+
+func ShowVersion() {
+    fmt.Fprintf(os.Stdout, "version: %s (%s)\n", version, gitcommit)
+    os.Exit(0)
+}

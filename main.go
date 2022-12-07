@@ -34,8 +34,13 @@ type verinfo struct {
 }
 
 func init() {
+	if len(os.Getenv("GOPACKAGE")) == 0 {
+		pckg = DefaultPackage
+	} else {
+		pckg = os.Getenv("GOPACKAGE")
+	}
 	flag.StringVar(&output, "o", DefaultOutput, "output file name")
-	flag.StringVar(&pckg, "p", DefaultPackage, "package name")
+	flag.StringVar(&pckg, "p", pckg, "package name")
 	flag.BoolVar(&showVersion, "version", false, "show version")
 	flag.Parse()
 	if showVersion {
