@@ -3,7 +3,6 @@ package main
 import (
 	_ "embed"
 	"flag"
-	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -44,8 +43,7 @@ func init() {
 	flag.BoolVar(&showVersion, "version", false, "show version")
 	flag.Parse()
 	if showVersion {
-		fmt.Println("\nversion:", version)
-		os.Exit(0)
+		ShowVersion()
 	}
 }
 
